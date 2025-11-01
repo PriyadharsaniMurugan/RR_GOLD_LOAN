@@ -1596,27 +1596,30 @@ const Reminders = () => {
                     <th className="actions-column">Actions</th>
                   </tr>
                 </thead>
-                <tbody>
-                  {filterDataByDateRange(apraisalentries).map((appraisal) => (
-                    <tr key={appraisal._id}>
-                      <td>{appraisal.customerId}</td>
-                      <td>{appraisal.loanNo}</td>
-                      <td>{appraisal.paymentDate}</td>
-                      <td>{appraisal.interestamount}</td>
-                      <td>{appraisal.interestPrinciple}</td>
-                      <td>{appraisal.balance}</td>
-                      <td>{appraisal.receiptNo}</td>
-                      <td>
-                        <button
-                          className="btn btn-danger btn-sm"
-                          onClick={() => handleDelete6(appraisal._id)}
-                        >
-                          Delete
-                        </button>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
+               <tbody>
+  {filterDataByDateRange(apraisalentries)
+    .sort((a, b) => new Date(a.paymentDate) - new Date(b.paymentDate))
+    .map((appraisal) => (
+      <tr key={appraisal._id}>
+        <td>{appraisal.customerId}</td>
+        <td>{appraisal.loanNo}</td>
+        <td>{appraisal.paymentDate}</td>
+        <td>{appraisal.interestamount}</td>
+        <td>{appraisal.interestPrinciple}</td>
+        <td>{appraisal.balance}</td>
+        <td>{appraisal.receiptNo}</td>
+        <td>
+          <button
+            className="btn btn-danger btn-sm"
+            onClick={() => handleDelete6(appraisal._id)}
+          >
+            Delete
+          </button>
+        </td>
+      </tr>
+    ))}
+</tbody>
+
               </table>
             </div>
           </div>
